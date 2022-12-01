@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
-
-const useTokens = (user) => {
+import axios from 'axios';
+const useTokens = (user , loading) => {
     const [token, setToken] = useState('');
-
+console.log(user)
     useEffect(()=>{
         const email = user?.user?.email
         const currentUser = {email : email}
         if(email){
-            fetch(`https://tradl-technologies-private-limited-server.vercel.app/user/${email}`, {
+            fetch(`https://registrar-app.onrender.com/user/${email}`, {
                 method:'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
-                body:JSON.stringify(currentUser)
+                body: JSON.stringify(currentUser)
             })
             .then(res=>res.json())
             .then(data => {
@@ -21,7 +21,13 @@ const useTokens = (user) => {
                 localStorage.setItem('accessToken', accessToken);
                 setToken(accessToken);
             })
+
         }
+
+         
+            
+        
+
 
     },[user])
 

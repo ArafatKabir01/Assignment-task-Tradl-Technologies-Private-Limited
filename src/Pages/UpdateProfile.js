@@ -11,15 +11,21 @@ const UpdateProfile = () => {
     let { id } = useParams()
 
     useEffect(() => {
-        const geturl = `https://tradl-technologies-private-limited-server.vercel.app/user?email=${user.email}`
-        fetch(geturl, {
-            method: 'GET',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => setUpdateProfile(data[0]))
+        if(loading){
+            return <p>Loading...</p>
+        }
+        const geturl = `https://registrar-app.onrender.com/user?email=${user?.email}`
+
+        if(user){
+            fetch(geturl, {
+                method: 'GET',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => setUpdateProfile(data[0]))
+        }
 
     }, [user])
     console.log(updateProfile)
@@ -31,7 +37,7 @@ const UpdateProfile = () => {
     }
 
     const onSubmit = data => {
-        const url = `https://tradl-technologies-private-limited-server.vercel.app/user/${id}`
+        const url = `https://registrar-app.onrender.com/user/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {

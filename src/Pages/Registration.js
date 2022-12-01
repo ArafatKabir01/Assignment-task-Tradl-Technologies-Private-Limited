@@ -32,7 +32,7 @@ const Registration = () => {
             phoneNumber:usersData.phoneNumber,
             place : usersData.place
         }
-         fetch('https://tradl-technologies-private-limited-server.vercel.app/alluser',{
+         fetch('https://registrar-app.onrender.com/alluser',{
             method : 'POST',
             headers : {
                 'content-type' : 'application/json'

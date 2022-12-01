@@ -10,9 +10,7 @@ import axios from 'axios';
 import useTokens from './Hook/useTokens';
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [sendPasswordResetEmail, sending, perror] = useSendPasswordResetEmail(
-    auth
-  );
+  const [sendPasswordResetEmail, sending, perror] = useSendPasswordResetEmail(auth);
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [
     signInWithEmailAndPassword,
@@ -20,7 +18,7 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
-  const [token] = useTokens(user)
+  const [token] = useTokens(user , loading)
   const navigate = useNavigate()
   let errorLogin;
   let cheqLoading;

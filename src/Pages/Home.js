@@ -15,7 +15,10 @@ const Home = () => {
     const navigate = useNavigate()
     console.log(currentUser)
     useEffect(() => {
-        const geturl = `https://tradl-technologies-private-limited-server.vercel.app/user?email=${user.email}`
+        if(loading){
+            return <p>Loading....</p>
+        }
+        const geturl = `https://registrar-app.onrender.com/user?email=${user?.email}`
         fetch(geturl, {
             method: 'GET',
             headers: {
